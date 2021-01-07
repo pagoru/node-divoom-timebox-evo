@@ -12,19 +12,7 @@
     "pre-commit"
   ],
   "scripts": {
-    "prepack": "npm run test && npm run build",
-    "doc": "typedoc && find docs -type f -name '*.html' -exec sed -i '' -e 's/\\/.*\\/node_modules/node_modules/g' {} \\;",
-    "build": "tsc",
-    "watch": "rollup -cw",
-    "test": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha --require ts-node/register test/*.spec.ts test/**/*.spec.ts",
-    "testWithCoverage": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' nyc -r lcov -e .ts -x \"test/**/*.spec.ts\" mocha -r ts-node/register test/*.spec.ts test/**/*.spec.ts && nyc report",
-    "beta-version-patch": "npm version $(semver $npm_package_version -i prerelease --preid beta)",
-    "beta-version-minor": "npm version $(semver $npm_package_version -i preminor --preid beta)",
-    "beta-version-major": "npm version $(semver $npm_package_version -i premajor --preid beta)",
-    "rc-version": "npm version $(semver $npm_package_version -i prerelease --preid rc)",
-    "release-patch": "npm version $(semver $npm_package_version -i)",
-    "release-minor": "npm version $(semver $npm_package_version -i minor)",
-    "release-major": "npm version $(semver $npm_package_version -i major)"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
