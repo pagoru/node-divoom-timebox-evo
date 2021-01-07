@@ -1,4 +1,9 @@
-export var TimeDisplayType;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Type for the TimeChannel
+ */
+var TimeDisplayType;
 (function (TimeDisplayType) {
     TimeDisplayType[TimeDisplayType["FullScreen"] = 0] = "FullScreen";
     TimeDisplayType[TimeDisplayType["Rainbow"] = 1] = "Rainbow";
@@ -6,16 +11,22 @@ export var TimeDisplayType;
     TimeDisplayType[TimeDisplayType["AnalogSquare"] = 3] = "AnalogSquare";
     TimeDisplayType[TimeDisplayType["FullScreenNegative"] = 4] = "FullScreenNegative";
     TimeDisplayType[TimeDisplayType["AnalogRound"] = 5] = "AnalogRound";
-})(TimeDisplayType || (TimeDisplayType = {}));
-export var LightningType;
+})(TimeDisplayType = exports.TimeDisplayType || (exports.TimeDisplayType = {}));
+/**
+ * Type for the LightningChannel
+ */
+var LightningType;
 (function (LightningType) {
     LightningType[LightningType["PlainColor"] = 0] = "PlainColor";
     LightningType[LightningType["Love"] = 1] = "Love";
     LightningType[LightningType["Plants"] = 2] = "Plants";
     LightningType[LightningType["NoMosquitto"] = 3] = "NoMosquitto";
     LightningType[LightningType["Sleeping"] = 4] = "Sleeping";
-})(LightningType || (LightningType = {}));
-export var WeatherType;
+})(LightningType = exports.LightningType || (exports.LightningType = {}));
+/**
+ * Type of weather for the [[TempWeatherCommand]]
+ */
+var WeatherType;
 (function (WeatherType) {
     WeatherType[WeatherType["Clear"] = 1] = "Clear";
     WeatherType[WeatherType["CloudySky"] = 3] = "CloudySky";
@@ -23,8 +34,11 @@ export var WeatherType;
     WeatherType[WeatherType["Rain"] = 6] = "Rain";
     WeatherType[WeatherType["Snow"] = 8] = "Snow";
     WeatherType[WeatherType["Fog"] = 9] = "Fog";
-})(WeatherType || (WeatherType = {}));
-export var VJEffectType;
+})(WeatherType = exports.WeatherType || (exports.WeatherType = {}));
+/**
+ * Type of the VJEffect channel
+ */
+var VJEffectType;
 (function (VJEffectType) {
     VJEffectType[VJEffectType["Sparkles"] = 0] = "Sparkles";
     VJEffectType[VJEffectType["Lava"] = 1] = "Lava";
@@ -42,11 +56,13 @@ export var VJEffectType;
     VJEffectType[VJEffectType["PinkBlueWave"] = 13] = "PinkBlueWave";
     VJEffectType[VJEffectType["RainbowCross"] = 14] = "RainbowCross";
     VJEffectType[VJEffectType["RainbowShapes"] = 15] = "RainbowShapes";
-})(VJEffectType || (VJEffectType = {}));
-export var TIMEBOX_CONST = {
+})(VJEffectType = exports.VJEffectType || (exports.VJEffectType = {}));
+/**
+ * Exports the constants for the different channels
+ */
+exports.TIMEBOX_CONST = {
     TimeType: TimeDisplayType,
     LightningType: LightningType,
     WeatherType: WeatherType,
     VJEffectType: VJEffectType,
 };
-//# sourceMappingURL=types.js.map

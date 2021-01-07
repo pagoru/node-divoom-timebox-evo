@@ -1,3 +1,7 @@
-export * from "./drawing";
-export * from "./text";
-//# sourceMappingURL=exports.js.map
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(require("./drawing"));
+__export(require("./text"));

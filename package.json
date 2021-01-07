@@ -3,32 +3,14 @@
   "version": "0.3.0",
   "description": "A module to generate and decode messages from a Divoom Timebox Evo",
   "main": "dist/index.js",
-  "module": "dist/index.js",
-  "files": [
-    "dist"
-  ],
-  "type": "module",
   "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "build": "tsc"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RomRider/node-divoom-timebox-evo.git"
-  },
-  "keywords": [
-    "divoom",
-    "npm",
-    "node",
-    "module",
-    "timebox"
-  ],
-  "author": "Jérôme Wiedemann",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/RomRider/node-divoom-timebox-evo/issues"
-  },
-  "homepage": "https://github.com/RomRider/node-divoom-timebox-evo#readme",
   "devDependencies": {
     "@types/chai": "^4.2.0",
     "@types/chai-as-promised": "^7.1.2",

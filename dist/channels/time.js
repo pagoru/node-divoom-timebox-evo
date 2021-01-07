@@ -1,129 +1,86 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-import { TimeboxEvoRequest } from "../requests";
-import { TimeDisplayType } from "../types";
-import { TinyColor } from "@ctrl/tinycolor";
-import { number2HexString, boolean2HexString, color2HexString } from "../helpers/utils";
-var TimeChannel = (function (_super) {
-    __extends(TimeChannel, _super);
-    function TimeChannel(opts) {
-        var _this = _super.call(this) || this;
-        _this._opts = {
-            type: TimeDisplayType.FullScreen,
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const requests_1 = require("../requests");
+const types_1 = require("../types");
+const tinycolor_1 = require("@ctrl/tinycolor");
+const utils_1 = require("../helpers/utils");
+class TimeChannel extends requests_1.TimeboxEvoRequest {
+    /**
+     * Generates the appropriate message to display the Time Channel on the Divoom Timebox Evo
+     * @param opts the time options
+     */
+    constructor(opts) {
+        super();
+        this._opts = {
+            type: types_1.TimeDisplayType.FullScreen,
             showTime: true,
             showWeather: false,
             showTemp: false,
             showCalendar: false
         };
-        _this._PACKAGE_PREFIX = "450001";
-        _this.color =
-            opts && opts.color ? new TinyColor(opts.color) : new TinyColor("FFFFFF");
-        _this._opts = __assign(__assign({}, _this._opts), opts);
-        _this._updateMessage();
-        return _this;
+        this._PACKAGE_PREFIX = "450001";
+        this.color =
+            opts && opts.color ? new tinycolor_1.TinyColor(opts.color) : new tinycolor_1.TinyColor("FFFFFF");
+        this._opts = Object.assign(Object.assign({}, this._opts), opts);
+        this._updateMessage();
     }
-    TimeChannel.prototype._updateMessage = function () {
+    /**
+     * Updates the message queue based on the parameters used
+     */
+    _updateMessage() {
         this.clear();
         this.push(this._PACKAGE_PREFIX +
-            number2HexString(this._opts.type) +
-            boolean2HexString(this._opts.showTime) +
-            boolean2HexString(this._opts.showWeather) +
-            boolean2HexString(this._opts.showTemp) +
-            boolean2HexString(this._opts.showCalendar) +
-            color2HexString(this._color));
-    };
-    Object.defineProperty(TimeChannel.prototype, "type", {
-        get: function () {
-            return this._opts.type;
-        },
-        set: function (type) {
-            this._opts.type = type;
-            this._updateMessage();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(TimeChannel.prototype, "color", {
-        get: function () {
-            return this._color;
-        },
-        set: function (color) {
-            var localcolor = new TinyColor(color);
-            if (!localcolor.isValid)
-                throw new Error("Provided color " + localcolor + " is not valid");
-            this._color = localcolor.toHex();
-            this._updateMessage();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(TimeChannel.prototype, "showTime", {
-        get: function () {
-            return this._opts.showTime;
-        },
-        set: function (bool) {
-            this._opts.showTime = bool;
-            this._updateMessage();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(TimeChannel.prototype, "showWeather", {
-        get: function () {
-            return this._opts.showWeather;
-        },
-        set: function (bool) {
-            this._opts.showWeather = bool;
-            this._updateMessage();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(TimeChannel.prototype, "showTemp", {
-        get: function () {
-            return this._opts.showTemp;
-        },
-        set: function (bool) {
-            this._opts.showTemp = bool;
-            this._updateMessage();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(TimeChannel.prototype, "showCalendar", {
-        get: function () {
-            return this._opts.showCalendar;
-        },
-        set: function (bool) {
-            this._opts.showCalendar = bool;
-            this._updateMessage();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return TimeChannel;
-}(TimeboxEvoRequest));
-export { TimeChannel };
-//# sourceMappingURL=time.js.map
+            utils_1.number2HexString(this._opts.type) +
+            utils_1.boolean2HexString(this._opts.showTime) +
+            utils_1.boolean2HexString(this._opts.showWeather) +
+            utils_1.boolean2HexString(this._opts.showTemp) +
+            utils_1.boolean2HexString(this._opts.showCalendar) +
+            utils_1.color2HexString(this._color));
+    }
+    set type(type) {
+        this._opts.type = type;
+        this._updateMessage();
+    }
+    get type() {
+        return this._opts.type;
+    }
+    set color(color) {
+        const localcolor = new tinycolor_1.TinyColor(color);
+        if (!localcolor.isValid)
+            throw new Error(`Provided color ${localcolor} is not valid`);
+        this._color = localcolor.toHex();
+        this._updateMessage();
+    }
+    get color() {
+        return this._color;
+    }
+    set showTime(bool) {
+        this._opts.showTime = bool;
+        this._updateMessage();
+    }
+    get showTime() {
+        return this._opts.showTime;
+    }
+    set showWeather(bool) {
+        this._opts.showWeather = bool;
+        this._updateMessage();
+    }
+    get showWeather() {
+        return this._opts.showWeather;
+    }
+    set showTemp(bool) {
+        this._opts.showTemp = bool;
+        this._updateMessage();
+    }
+    get showTemp() {
+        return this._opts.showTemp;
+    }
+    set showCalendar(bool) {
+        this._opts.showCalendar = bool;
+        this._updateMessage();
+    }
+    get showCalendar() {
+        return this._opts.showCalendar;
+    }
+}
+exports.TimeChannel = TimeChannel;

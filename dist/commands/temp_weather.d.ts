@@ -1,5 +1,8 @@
 import { TimeboxEvoRequest } from "../requests";
 import { WeatherType } from "../types";
+/**
+ * Options for the [[TempWeatherCommand]]
+ */
 interface TempWeatherOpts {
     temperature?: number;
     weather?: WeatherType;

@@ -1,8 +1,8 @@
 import { TimeboxEvoRequest } from "../requests";
-import fs from "fs";
-import fileType from "file-type";
-import Jimp from "jimp";
-import gifWrap from "gifwrap";
+import * as fs from "fs";
+import * as fileType from "file-type";
+import * as Jimp from "jimp";
+import * as gifWrap from "gifwrap";
 import { JimpArray, DivoomJimpStatic, DivoomJimpAnim } from "./jimp_overloads";
 
 /**
@@ -16,7 +16,6 @@ export class DisplayAnimation extends TimeboxEvoRequest {
   private _opts: DisplayAnimationOpts = {
     size: 32
   };
-  public readonly size: number;
 
   constructor(opts?: DisplayAnimationOpts) {
     super();
@@ -73,7 +72,7 @@ export class DisplayAnimation extends TimeboxEvoRequest {
     let ja = JimpArray.create();
     const image = await Jimp.read(input);
     let resized = new DivoomJimpStatic(
-      image.resize(this.size, this.size, Jimp.RESIZE_NEAREST_NEIGHBOR)
+      image.resize(this._opts.size, this._opts.size, Jimp.RESIZE_NEAREST_NEIGHBOR)
     );
     ja.push(resized);
     return ja;
@@ -92,7 +91,7 @@ export class DisplayAnimation extends TimeboxEvoRequest {
       let image = (gifWrap.GifUtil.copyAsJimp(
         DivoomJimpAnim,
         frame
-      ) as DivoomJimpAnim).resize(this.size, this.size);
+      ) as DivoomJimpAnim).resize(this._opts.size, this._opts.size);
       image.delay = frame.delayCentisecs * 10;
       image.frame = index;
       ja.push(image);

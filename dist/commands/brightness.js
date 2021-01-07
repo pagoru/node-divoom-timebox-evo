@@ -1,88 +1,67 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-import { TimeboxEvoRequest } from "../requests";
-import { number2HexString } from "../helpers/utils";
-var BrightnessCommand = (function (_super) {
-    __extends(BrightnessCommand, _super);
-    function BrightnessCommand(opts) {
-        var _this = _super.call(this) || this;
-        _this._opts = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const requests_1 = require("../requests");
+const utils_1 = require("../helpers/utils");
+class BrightnessCommand extends requests_1.TimeboxEvoRequest {
+    /**
+     * Generates the appropriate message to change the brightness on the Divoom Timebox Evo
+     * @param opts the brightness options
+     */
+    constructor(opts) {
+        super();
+        /**
+         * Default options
+         */
+        this._opts = {
+            /**
+             * default is 100
+             */
             brightness: 100,
+            /**
+             * default is 0
+             */
             in_min: 0,
+            /**
+             * default is 100
+             */
             in_max: 100
         };
-        _this._PACKAGE_PREFIX = "74";
-        _this._opts = __assign(__assign({}, _this._opts), opts);
-        _this._updateMessage();
-        return _this;
+        this._PACKAGE_PREFIX = "74";
+        this._opts = Object.assign(Object.assign({}, this._opts), opts);
+        this._updateMessage();
     }
-    Object.defineProperty(BrightnessCommand.prototype, "brightness", {
-        get: function () {
-            return this._opts.brightness;
-        },
-        set: function (brightness) {
-            this._opts.brightness = brightness;
-            this._updateMessage();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(BrightnessCommand.prototype, "in_min", {
-        get: function () {
-            return this._opts.in_min;
-        },
-        set: function (in_min) {
-            this._opts.in_min = in_min;
-            this._updateMessage();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(BrightnessCommand.prototype, "in_max", {
-        get: function () {
-            return this._opts.in_max;
-        },
-        set: function (in_max) {
-            this._opts.in_max = in_max;
-            this._updateMessage();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(BrightnessCommand.prototype, "opts", {
-        get: function () {
-            return this._opts;
-        },
-        set: function (opts) {
-            this._opts = __assign(__assign({}, this._opts), opts);
-            this._updateMessage();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    BrightnessCommand.prototype._updateMessage = function () {
+    set brightness(brightness) {
+        this._opts.brightness = brightness;
+        this._updateMessage();
+    }
+    get brightness() {
+        return this._opts.brightness;
+    }
+    set in_min(in_min) {
+        this._opts.in_min = in_min;
+        this._updateMessage();
+    }
+    get in_min() {
+        return this._opts.in_min;
+    }
+    set in_max(in_max) {
+        this._opts.in_max = in_max;
+        this._updateMessage();
+    }
+    get in_max() {
+        return this._opts.in_max;
+    }
+    set opts(opts) {
+        this._opts = Object.assign(Object.assign({}, this._opts), opts);
+        this._updateMessage();
+    }
+    get opts() {
+        return this._opts;
+    }
+    /**
+     * Updates the message queue based on the parameters used
+     */
+    _updateMessage() {
         function map(x, in_min, in_max, out_min, out_max) {
             if (x < in_min || x > in_max) {
                 throw new Error("map() in_min is < value or in_max > value");
@@ -93,14 +72,12 @@ var BrightnessCommand = (function (_super) {
             (this._opts.in_min === undefined || this._opts.in_max === undefined)) {
             throw new Error("Brightness should be between 0 and 100 or in_min and in_max should be defined");
         }
-        var briInRange = this._opts.brightness;
+        let briInRange = this._opts.brightness;
         if (this._opts.in_min !== undefined && this._opts.in_max !== undefined) {
             briInRange = Math.ceil(map(this._opts.brightness, this._opts.in_min, this._opts.in_max, 0, 100));
         }
         this.clear();
-        this.push(this._PACKAGE_PREFIX + number2HexString(briInRange));
-    };
-    return BrightnessCommand;
-}(TimeboxEvoRequest));
-export { BrightnessCommand };
-//# sourceMappingURL=brightness.js.map
+        this.push(this._PACKAGE_PREFIX + utils_1.number2HexString(briInRange));
+    }
+}
+exports.BrightnessCommand = BrightnessCommand;

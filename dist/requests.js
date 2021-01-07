@@ -1,23 +1,34 @@
-import { TimeboxEvoMessageArray } from "./messages/message_array";
-import { TimeboxEvoMessage } from "./messages/message";
-var TimeboxEvoRequest = (function () {
-    function TimeboxEvoRequest() {
-        this._messages = TimeboxEvoMessageArray.create();
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const message_array_1 = require("./messages/message_array");
+const message_1 = require("./messages/message");
+/**
+ * Generic class to communicate with the Timebox Evo
+ */
+class TimeboxEvoRequest {
+    constructor() {
+        this._messages = message_array_1.TimeboxEvoMessageArray.create();
     }
-    TimeboxEvoRequest.prototype.push = function (msg) {
-        return this._messages.push(new TimeboxEvoMessage(msg));
-    };
-    TimeboxEvoRequest.prototype.clear = function () {
-        this._messages = TimeboxEvoMessageArray.create();
-    };
-    Object.defineProperty(TimeboxEvoRequest.prototype, "messages", {
-        get: function () {
-            return this._messages;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return TimeboxEvoRequest;
-}());
-export { TimeboxEvoRequest };
-//# sourceMappingURL=requests.js.map
+    /**
+     * This queues a message in the message queue
+     * @param msg the message to append in the message queue
+     * @returns the length of the message queue
+     */
+    push(msg) {
+        return this._messages.push(new message_1.TimeboxEvoMessage(msg));
+    }
+    /**
+     * Clears the message queue
+     */
+    clear() {
+        this._messages = message_array_1.TimeboxEvoMessageArray.create();
+    }
+    /**
+     * Returns the message queue
+     * @returns The message queue
+     */
+    get messages() {
+        return this._messages;
+    }
+}
+exports.TimeboxEvoRequest = TimeboxEvoRequest;

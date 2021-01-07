@@ -9,6 +9,9 @@ export * from "./commands/exports";
 export * from "./drawing/exports";
 export * from "./requests";
 export { TIMEBOX_CONST } from "./types";
+/**
+ * This class instanciate the proper class to communicate with the Timebox Evo
+ */
 export declare class TimeboxEvo {
     createRequest(type: Object): RequestTypes;
     createRequest(type: "cloud"): CloudChannel;

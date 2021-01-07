@@ -1,4 +1,7 @@
 import { TimeboxEvoRequest } from "../requests";
+/**
+ * Options for the [[DateTimeCommand]]
+ */
 interface DateTimeOpts {
     date?: Date;
 }
