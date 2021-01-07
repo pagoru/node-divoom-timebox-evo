@@ -6,6 +6,15 @@ import gifWrap from "gifwrap";
 import { JimpArray, DivoomJimpStatic, DivoomJimpAnim } from "./jimp_overloads";
 
 export class DisplayAnimation extends TimeboxEvoRequest {
+
+  public readonly size: number;
+
+  constructor(size: number = 32) {
+    super();
+    this.size = size;
+  }
+
+
   /**
    * Reads an image and returns a promise of [[JimpArray]]. It works with gif, jpeg, png and bmp
    * @param input a filepath to an image or a buffer reprensenting an image
@@ -55,7 +64,7 @@ export class DisplayAnimation extends TimeboxEvoRequest {
     let ja = JimpArray.create();
     const image = await Jimp.read(input);
     let resized = new DivoomJimpStatic(
-      image.resize(16, 16, Jimp.RESIZE_NEAREST_NEIGHBOR)
+      image.resize(this.size, this.size, Jimp.RESIZE_NEAREST_NEIGHBOR)
     );
     ja.push(resized);
     return ja;
@@ -74,7 +83,7 @@ export class DisplayAnimation extends TimeboxEvoRequest {
       let image = (gifWrap.GifUtil.copyAsJimp(
         DivoomJimpAnim,
         frame
-      ) as DivoomJimpAnim).resize(16, 16);
+      ) as DivoomJimpAnim).resize(this.size, this.size);
       image.delay = frame.delayCentisecs * 10;
       image.frame = index;
       ja.push(image);
