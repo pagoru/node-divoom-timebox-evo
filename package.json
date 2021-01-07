@@ -12,10 +12,9 @@
     "pre-commit"
   ],
   "scripts": {
-    "pre-commit": "npm run test && npm run build && npm run doc && git add .",
     "prepack": "npm run test && npm run build",
     "doc": "typedoc && find docs -type f -name '*.html' -exec sed -i '' -e 's/\\/.*\\/node_modules/node_modules/g' {} \\;",
-    "build": "rollup -c",
+    "build": "tsc",
     "watch": "rollup -cw",
     "test": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha --require ts-node/register test/*.spec.ts test/**/*.spec.ts",
     "testWithCoverage": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' nyc -r lcov -e .ts -x \"test/**/*.spec.ts\" mocha -r ts-node/register test/*.spec.ts test/**/*.spec.ts && nyc report",

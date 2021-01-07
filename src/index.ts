@@ -64,7 +64,7 @@ export class TimeboxEvo {
         return new DisplayText(opts);
       case "picture":
       case "animation":
-        return new DisplayAnimation();
+        return new DisplayAnimation(opts);
       case "datetime":
         return new DateTimeCommand(opts);
       case "raw":
