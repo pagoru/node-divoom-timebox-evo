@@ -55,10 +55,12 @@ import gifWrap from "gifwrap";
 import { JimpArray, DivoomJimpStatic, DivoomJimpAnim } from "./jimp_overloads";
 var DisplayAnimation = (function (_super) {
     __extends(DisplayAnimation, _super);
-    function DisplayAnimation(size) {
-        if (size === void 0) { size = 32; }
+    function DisplayAnimation(opts) {
         var _this = _super.call(this) || this;
-        _this.size = size;
+        _this._opts = {
+            size: 32
+        };
+        _this._opts = opts;
         return _this;
     }
     DisplayAnimation.prototype.read = function (input) {

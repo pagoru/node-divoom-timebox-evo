@@ -47,6 +47,6 @@ export var TIMEBOX_CONST = {
     TimeType: TimeDisplayType,
     LightningType: LightningType,
     WeatherType: WeatherType,
-    VJEffectType: VJEffectType
+    VJEffectType: VJEffectType,
 };
 //# sourceMappingURL=types.js.map

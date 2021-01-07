@@ -5,13 +5,22 @@ import Jimp from "jimp";
 import gifWrap from "gifwrap";
 import { JimpArray, DivoomJimpStatic, DivoomJimpAnim } from "./jimp_overloads";
 
-export class DisplayAnimation extends TimeboxEvoRequest {
+/**
+ * Options for the [[DisplayAnimation]]
+ */
+export interface DisplayAnimationOpts {
+  size?: 16 | 32
+}
 
+export class DisplayAnimation extends TimeboxEvoRequest {
+  private _opts: DisplayAnimationOpts = {
+    size: 32
+  };
   public readonly size: number;
 
-  constructor(size: number = 32) {
+  constructor(opts?: DisplayAnimationOpts) {
     super();
-    this.size = size;
+    this._opts = opts;
   }
 
 

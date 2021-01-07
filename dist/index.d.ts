@@ -3,7 +3,7 @@ import { TimeboxEvoRequest } from "./requests";
 import { TimeChannel, LightningChannel, VJEffectChannel, ScoreBoardChannel, CloudChannel, CustomChannel } from "./channels/exports";
 import { BrightnessCommand, TempWeatherCommand, DateTimeCommand } from "./commands/exports";
 import { DisplayText } from "./drawing/text";
-import { DisplayAnimation } from "./drawing/drawing";
+import { DisplayAnimation, DisplayAnimationOpts } from "./drawing/drawing";
 export * from "./channels/exports";
 export * from "./commands/exports";
 export * from "./drawing/exports";
@@ -20,7 +20,7 @@ export declare class TimeboxEvo {
     createRequest(type: "brightness"): BrightnessCommand;
     createRequest(type: "temp_weather"): TempWeatherCommand;
     createRequest(type: "text"): DisplayText;
-    createRequest(type: "picture" | "animation"): DisplayAnimation;
+    createRequest(type: "picture" | "animation", opts?: DisplayAnimationOpts): DisplayAnimation;
     createRequest(type: "datetime"): DateTimeCommand;
     createRequest(type: "raw"): TimeboxEvoRequest;
 }

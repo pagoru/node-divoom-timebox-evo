@@ -73,7 +73,7 @@ export const TIMEBOX_CONST = {
   TimeType: TimeDisplayType,
   LightningType: LightningType,
   WeatherType: WeatherType,
-  VJEffectType: VJEffectType
+  VJEffectType: VJEffectType,
 };
 
 export type RequestTypes =
