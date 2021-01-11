@@ -19,7 +19,10 @@ export class DisplayAnimation extends TimeboxEvoRequest {
 
   constructor(opts?: DisplayAnimationOpts) {
     super();
-    this._opts = opts;
+    this._opts = {
+      ...this._opts,
+      ...opts
+    };
   }
 
 
@@ -59,7 +62,7 @@ export class DisplayAnimation extends TimeboxEvoRequest {
           throw new Error("file type not supported");
       }
     } else {
-      throw new Error("file type unkown");
+      throw new Error("file type unkown");5
     }
   }
 

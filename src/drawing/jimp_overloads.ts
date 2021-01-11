@@ -82,10 +82,10 @@ export class DivoomJimp extends Jimp {
 
       if (!colorsArray.includes(color)) {
         colorsArray.push(color);
-        pixelArray[x + 16 * y] = colorCounter;
+        pixelArray[x + this.bitmap.width * y] = colorCounter;
         colorCounter++;
       } else {
-        pixelArray[x + 16 * y] = colorsArray.indexOf(color);
+        pixelArray[x + this.bitmap.width * y] = colorsArray.indexOf(color);
       }
     });
     return { colors: colorsArray, pixels: pixelArray };

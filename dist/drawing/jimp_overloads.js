@@ -74,11 +74,11 @@ class DivoomJimp extends Jimp {
                 + blue.toString(16).padStart(2, "0");
             if (!colorsArray.includes(color)) {
                 colorsArray.push(color);
-                pixelArray[x + 16 * y] = colorCounter;
+                pixelArray[x + this.bitmap.width * y] = colorCounter;
                 colorCounter++;
             }
             else {
-                pixelArray[x + 16 * y] = colorsArray.indexOf(color);
+                pixelArray[x + this.bitmap.width * y] = colorsArray.indexOf(color);
             }
         });
         return { colors: colorsArray, pixels: pixelArray };
@@ -90,7 +90,7 @@ class DivoomJimp extends Jimp {
    * @returns the pixel sting to use in a message
    */
     getPixelString(pixelArray, nbColors) {
-        let nbBitsForAPixel = Math.log(nbColors) / Math.log(2);
+        let nbBitsForAPixel = Math.log(nbColors) / Math.log(2) / 2;
         let bits = Number.isInteger(nbBitsForAPixel)
             ? nbBitsForAPixel
             : (Math.trunc(nbBitsForAPixel) + 1);

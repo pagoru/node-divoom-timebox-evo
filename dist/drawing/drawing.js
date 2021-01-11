@@ -21,7 +21,7 @@ class DisplayAnimation extends requests_1.TimeboxEvoRequest {
         this._opts = {
             size: 32
         };
-        this._opts = opts;
+        this._opts = Object.assign(Object.assign({}, this._opts), opts);
     }
     /**
      * Reads an image and returns a promise of [[JimpArray]]. It works with gif, jpeg, png and bmp
